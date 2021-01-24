@@ -1,5 +1,6 @@
 # wg_hideme_privoxy
 
+## Folk to work on Raspberry Pi (ARM) only tested on 4B
 ## wireguard vpn client with privoxy and microsocks in docker
 ## its a hideme vpn client ONLY
 
@@ -13,8 +14,8 @@ docker run -d \
   --log-opt max-size=10m \
   --log-opt max-file=3 \
   --privileged=true \
-  -e TZ="Europe/Berlin" \
-  -e LOCAL_NET=192.168.1.0/24 \
+  -e TZ="Australia/Adelaide" \
+  -e LOCAL_NET=192.168.0.0/24 \
   -e HIDEME_SERVER=de.hideservers.net \
   -e HIDEME_FILE=hideme.yaml \
   -e HIDEME_USER=hidemeLogin \
@@ -23,7 +24,7 @@ docker run -d \
   -p 1080:1080/tcp \
   -v /mnt/user/appdata/wg_hideme_privoxy/:/config:rw \
   --cap-add=NET_ADMIN --device /dev/net/tun --sysctl net.ipv6.conf.all.disable_ipv6=0 --dns=8.8.8.8 \
-  alturismo/wg_hideme_privoxy
+  ryanhattam/wg_hideme_privoxy
 ```
 
 ## Environment Variables

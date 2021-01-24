@@ -1,4 +1,5 @@
-FROM alpine:latest
+# using older alpine due to a temp issue resolving apks for newer
+FROM alpine:3.12
 RUN apk update
 RUN apk upgrade
 RUN apk add --no-cache ca-certificates privoxy runit
@@ -13,10 +14,11 @@ RUN tar -xzvf v1.0.1.tar.gz \
     && apk del make gcc musl-dev
 
 MAINTAINER alturismo alturismo@gmail.com
+LABEL folk-maintainer="ryan@hattam.com.au"
 
 # Timezone (TZ)
 RUN apk update && apk add --no-cache tzdata
-ENV TZ=Europe/Berlin
+ENV TZ=Australia/Adelaide
 RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
 
 # Add Bash shell & dependancies
@@ -26,7 +28,7 @@ RUN apk add --no-cache bash busybox-suid su-exec
 VOLUME /config
 
 # Add Files
-COPY hide.client.linux /usr/bin
+COPY hide.client.linux.arm /usr/bin/hide.client.linux
 RUN chmod +x /usr/bin/hide.client.linux
 COPY hideme.yaml /
 COPY CA.pem /
