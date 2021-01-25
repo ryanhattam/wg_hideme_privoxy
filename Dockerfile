@@ -4,6 +4,8 @@ RUN apk update
 RUN apk upgrade
 RUN apk add --no-cache ca-certificates privoxy runit
 
+RUN apk add --no-cache libc6-compat
+
 RUN wget https://github.com/rofl0r/microsocks/archive/v1.0.1.tar.gz
 
 RUN apk add --no-cache make gcc musl-dev
