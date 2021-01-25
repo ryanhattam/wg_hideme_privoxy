@@ -28,7 +28,7 @@ RUN apk add --no-cache bash busybox-suid su-exec
 VOLUME /config
 
 # Add Files
-COPY hide.client.linux.arm /usr/bin/hide.client.linux
+COPY hide.client.linux /usr/bin/
 RUN chmod +x /usr/bin/hide.client.linux
 COPY hideme.yaml /
 COPY CA.pem /
